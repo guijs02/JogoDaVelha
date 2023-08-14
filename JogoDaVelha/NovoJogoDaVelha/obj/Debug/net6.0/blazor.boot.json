@@ -196,13 +196,13 @@
       "mscorlib.dll": "sha256-j4L8eYEbpTL2UGB4uTT5qwkcqJsmB46NkVr5uesXgJI=",
       "netstandard.dll": "sha256-2M8m82GceNG8Z8I4dD74L7Tl4vwXdwXcVpYN80ouzQA=",
       "System.Private.CoreLib.dll": "sha256-dFxocfrY9q0E7UJ6nBlyNfnWYTyPu3RKzSggfRhoPJY=",
-      "JogoDaVelha.dll": "sha256-zYQGVV1jNQ2CA9L4QAiKaxo9A0aPjYDNeADfAxpw6ms="
+      "JogoDaVelha.dll": "sha256-CSvn3593vD+5a\/I7rrkJoTGE3SAM4UcJcKmSqGcj\/MM="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "JogoDaVelha.pdb": "sha256-gA7isqtSa3R4o0OcOFPrb1mNZMOOwYz8dPkYICPsoIs="
+      "JogoDaVelha.pdb": "sha256-\/gLZYgQAFsNAT+Y2CVZxwwZMxNltGVipBqhst5pJ2YU="
     },
     "runtime": {
       "dotnet.6.0.20.7hiam6unqp.js": "sha256-iXtnf0CK+zdIWjR0cpE38tWChIpNC6sO+aSQAW+aBQU=",

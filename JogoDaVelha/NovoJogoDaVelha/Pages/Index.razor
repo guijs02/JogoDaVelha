@@ -10,41 +10,41 @@
     <div class="container" id="main">
 
         <div class="box" style="border-left: 0; border-top: 0" id="box1" @onclick="@(() => ActionCasas(0))">
-            <img src="@game.iconGame[0]" class="img-x-o" style="display:@game.DisplayCasa[0]" />
+            <img src="@game.IconGame[0]" class="img-x-o" style="display:@game.DisplayCasa[0]" />
 
         </div>
         <div class="box" style="border-top: 0" id="box2" @onclick="@(() => ActionCasas(1))">
 
-            <img src="@game.iconGame[1]" class="img-x-o" style="display:@game.DisplayCasa[1]" />
+            <img src="@game.IconGame[1]" class="img-x-o" style="display:@game.DisplayCasa[1]" />
         </div>
-        <div class="box" style="border-top: 0; border-right: 0" id="box3"  @onclick="@(() => ActionCasas(2))">
-            <img src="@game.iconGame[2]" class="img-x-o" style="display:@game.DisplayCasa[2]" />
+        <div class="box" style="border-top: 0; border-right: 0" id="box3" @onclick="@(() => ActionCasas(2))">
+            <img src="@game.IconGame[2]" class="img-x-o" style="display:@game.DisplayCasa[2]" />
 
         </div>
 
-        <div class="box" style="border-left: 0" id="box4"  @onclick="@(() => ActionCasas(3))">
-            <img src="@game.iconGame[3]" class="img-x-o" style="display:@game.DisplayCasa[3]" />
+        <div class="box" style="border-left: 0" id="box4" @onclick="@(() => ActionCasas(3))">
+            <img src="@game.IconGame[3]" class="img-x-o" style="display:@game.DisplayCasa[3]" />
 
         </div>
 
         <div class="box" id="box5" @onclick="@(() => ActionCasas(4))">
-            <img src="@game.iconGame[4]" class="img-x-o" style="display:@game.DisplayCasa[4]" />
+            <img src="@game.IconGame[4]" class="img-x-o" style="display:@game.DisplayCasa[4]" />
 
         </div>
         <div class="box" style="border-right: 0" id="box6" @onclick="@(() => ActionCasas(5))">
-            <img src="@game.iconGame[5]" class="img-x-o" style="display:@game.DisplayCasa[5]" />
+            <img src="@game.IconGame[5]" class="img-x-o" style="display:@game.DisplayCasa[5]" />
 
         </div>
 
         <div class="box" style="border-left: 0; border-bottom: 0" id="box7" @onclick="@(() => ActionCasas(6))">
-            <img src="@game.iconGame[6]" class="img-x-o" style="display:@game.DisplayCasa[6]" />
+            <img src="@game.IconGame[6]" class="img-x-o" style="display:@game.DisplayCasa[6]" />
 
         </div>
         <div class="box" style="border-bottom: 0" id="box8" @onclick="@(() => ActionCasas(7))">
-            <img src="@game.iconGame[7]" class="img-x-o" style="display:@game.DisplayCasa[7]" />
+            <img src="@game.IconGame[7]" class="img-x-o" style="display:@game.DisplayCasa[7]" />
         </div>
         <div class="box" style="border-right: 0; border-bottom: 0" id="box9" @onclick="@(() => ActionCasas(8))">
-            <img src="@game.iconGame[8]" class="img-x-o" style="display:@game.DisplayCasa[8]" />
+            <img src="@game.IconGame[8]" class="img-x-o" style="display:@game.DisplayCasa[8]" />
         </div>
     </div>
 
@@ -65,9 +65,9 @@
 }
 
 <ModalOverGame _modalDisplayWin="@modalDisplayWin"
-               _resultado="@resultado"
+               _ganhadorDoGame="@GanhadorDoGame"
                _title="@TitleModal"
-               CallbackModalDisplayWin="@((display) => modalDisplayWin = display)">
+               _callbackModalDisplayWin="@((display) => modalDisplayWin = display)">
 </ModalOverGame>
 
 @code {
@@ -75,20 +75,18 @@
 
     private string TitleModal;
 
-    private string tema;
     public string modalDisplay { get; set; }
     public string modalDisplayWin = string.Empty;
-    public string resultado { get; set; } = string.Empty;
+    public string GanhadorDoGame { get; set; } = string.Empty;
 
-    int Count = -1;
-    public string escolha { get; set; }
+    int ContadorDeMovimentos = -1;
+
     private bool ExibeInitClickRest { get; set; }
     private bool ExibeInit { get; set; }
 
     Game game = new Game();
-  
-    VerificadorDeVitoria verificadorDeVitoria = new();
 
+    VerificadorDeVitoria verificadorDeVitoria = new();
 
     public string[] ResultGame = new[] { "win", "empate" };
 
@@ -103,30 +101,24 @@
         ExibeInit = true;
         OnInitializedCompleted = true;
     }
-    void OnSelect(ChangeEventArgs args)
-    {
-        if (game.DisplayCasa.Length > 0)
-        {
-            Reset(game.DisplayCasa.Length);
-        }
-        //gerenciadorDeDificuldade.VerificarDificuldades(args.Value.ToString());
 
-    }
     public void InitGame(string choice)
     {
         if (choice == GlobalConstants.X_PNG)
         {
-           
-            game.DontChoice = GlobalConstants.CIRCULO_PNG;
-            game.ChoiceUser = GlobalConstants.X_PNG;
+            SetarEscolhaDoUsuario(GlobalConstants.CIRCULO_PNG, GlobalConstants.X_PNG);
         }
         else
         {
-            game.DontChoice = GlobalConstants.X_PNG;
-            game.ChoiceUser = GlobalConstants.CIRCULO_PNG;
+            SetarEscolhaDoUsuario(GlobalConstants.X_PNG, GlobalConstants.CIRCULO_PNG);
         }
         modalDisplay = GlobalConstants.NONE;
 
+    }
+    void SetarEscolhaDoUsuario(string dontChoice, string choice)
+    {
+        game.DontChoice = dontChoice;
+        game.ChoiceUser = choice;
     }
     private void Reset(int indice)
     {
@@ -138,7 +130,7 @@
         ExibeInitClickRest = true;
 
     }
-    bool Vez_Usuario() => Count % 2 == 0;
+    bool Vez_Usuario() => ContadorDeMovimentos % 2 == 0;
 
     public void ActionCasas(int indice)
     {
@@ -151,68 +143,43 @@
             return;
         }
 
-        Count++;
+        ContadorDeMovimentos++;
 
-        if (Vez_Usuario())
-        {
-            game.iconGame[indice] = game.ChoiceUser;
-            game.PosicoesEscolhidas.Add((indice, game.iconGame[indice]));
-        }
-        else
-        {
-            game.iconGame[indice] = game.DontChoice;
-            game.PosicoesNaoEscolhidas.Add((indice, game.iconGame[indice]));
-        }
+        bool vezUsuario = Vez_Usuario();
 
-        GerarVencedor();
+        var DefinirChoiceUser = vezUsuario ? game.ChoiceUser : game.DontChoice;
+
+        var DefinirPosicoes = vezUsuario ? game.PosicoesEscolhidas : game.PosicoesNaoEscolhidas;
+
+        ArmazenarEDefinirPosicoesIcones(game.IconGame, DefinirChoiceUser, indice, DefinirPosicoes);
+
+        GerarVencedor(DefinirPosicoes);
 
         game.DisplayCasa[indice] = GlobalConstants.BLOCK;
 
     }
 
-    public void GerarVencedor()
+    public void GerarVencedor(List<(int, string)> definirPosicoes)
     {
-        if (VerificarSeHouveEmpate())
-            return;
-
-        if (Vez_Usuario())
+        if (!VerificarSeHouveGanhador(game.PosicoesDeVitorias, definirPosicoes) && ContadorDeMovimentos == 8)
         {
-            if (verificadorDeVitoria.AnalisarGanhador(game.PosicoesDeVitorias, SelecionarPosicoes_Icone(game.PosicoesEscolhidas).posicoes))
-            {
-                resultado = BindIconGanhador(SelecionarPosicoes_Icone(game.PosicoesEscolhidas).icone);
-                SetTitleModal((int)Decimal.Zero);
-                ExibirGanhadorModal();
-            }
-        }
-        else
-        {
-            if (verificadorDeVitoria.AnalisarGanhador(game.PosicoesDeVitorias, SelecionarPosicoes_Icone(game.PosicoesNaoEscolhidas).posicoes))
-            {
-                resultado = BindIconGanhador(SelecionarPosicoes_Icone(game.PosicoesNaoEscolhidas).icone);
-                SetTitleModal((int)Decimal.Zero);
-                ExibirGanhadorModal();
-            }
-        }
-    }
-    bool VerificarSeHouveEmpate()
-    {
-
-        if (Count != 8)
-            return false;
-
-        if (!verificadorDeVitoria.AnalisarGanhador(game.PosicoesDeVitorias, SelecionarPosicoes_Icone(game.PosicoesEscolhidas).posicoes) &&
-            !verificadorDeVitoria.AnalisarGanhador(game.PosicoesDeVitorias, SelecionarPosicoes_Icone(game.PosicoesNaoEscolhidas).posicoes))
-        {
-            resultado = GlobalConstants.EMPATE;
+            GanhadorDoGame = GlobalConstants.EMPATE;
+            SetTitleModalOverGame(1);
             ExibirGanhadorModal();
-            SetTitleModal(1);
-            return true;
         }
-        return false;
+    }
+    bool VerificarSeHouveGanhador(int[] posicoesDeVitorias, List<(int, string)> posicoes)
+    {
+        bool houveGanhador = verificadorDeVitoria.AnalisarGanhador(posicoesDeVitorias, SelecionarPosicoesIcone(posicoes).posicoes);
 
+        if (houveGanhador)
+            FinalizarGame(posicoes);
+
+
+        return houveGanhador;
     }
 
-    void SetTitleModal(int num)
+    void SetTitleModalOverGame(int num)
     {
         TitleModal = ResultGame[num];
     }
@@ -220,23 +187,32 @@
     public void ExibirGanhadorModal()
     {
         modalDisplayWin = GlobalConstants.BLOCK;
-
-        LimparDados();
     }
 
+    void FinalizarGame(List<(int, string)> posicoes)
+    {
+        var iconeGanhador = SelecionarPosicoesIcone(posicoes).icone;
 
+        GanhadorDoGame = iconeGanhador == GlobalConstants.CIRCULO_PNG ? GlobalConstants.BOLINHA : GlobalConstants.X;
+        SetTitleModalOverGame(0);
+        ExibirGanhadorModal();
+        LimparDados();
+    }
     private void LimparDados()
     {
         game.PosicoesNaoEscolhidas.Clear();
         game.PosicoesEscolhidas.Clear();
-        Count = -1;
+        ContadorDeMovimentos = -1;
         game.DontChoice = string.Empty;
         game.ChoiceUser = string.Empty;
     }
+    void ArmazenarEDefinirPosicoesIcones(string[] iconGame, string choice, int indice, List<(int, string)> posicoes)
+    {
+        iconGame[indice] = choice;
+        posicoes.Add((indice, iconGame[indice]));
+    }
 
-    string BindIconGanhador(string iconeGanhador) => iconeGanhador == GlobalConstants.CIRCULO_PNG ? GlobalConstants.BOLINHA : GlobalConstants.X;
-
-    (List<int> posicoes, string icone) SelecionarPosicoes_Icone(List<(int posicao, string icon)> listQObj)
+    (List<int> posicoes, string icone) SelecionarPosicoesIcone(List<(int posicao, string icon)> listQObj)
     {
         return (listQObj.Select(s => s.posicao).ToList(), listQObj.Select(s => s.icon).First());
     }

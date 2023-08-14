@@ -5,9 +5,20 @@
                 <h5 class="modal-title">Hora de jogar</h5>
             </div>
             <div class="modal-body">
+                <div>
+
+                    <input type="radio" checked="@IsIASelected" value="1" @onchange="@(() => ChangeTipoGameplaySelect(TipoGameplay.IA))" />
+                    <label>Jogar contra IA</label>
+
+                </div>
+                <div>
+
+                    <input type="radio" checked="@IsDuplaSelected" value="2" @onchange="@(() => ChangeTipoGameplaySelect(TipoGameplay.Dupla))" />
+                    <label>Jogar 1x1</label>
+                </div>
+                <br />
                 Escolha o jogador
                 <div>
-                    <br />
                     <button class="btn btn-primary" @onclick="@(() => PassToParent(GlobalConstants.X_PNG))">Jogador 1 (X) </button>
                     <button class="btn btn-primary" @onclick="@(() => PassToParent(GlobalConstants.CIRCULO_PNG))">Jogador 2 (O) </button>
                 </div>
@@ -17,7 +28,11 @@
 </div>
 
 @code {
+    public TipoGameplay TipoGameplay { get; set; } = 0;
 
+    bool IsIASelected => TipoGameplay == TipoGameplay.IA;
+
+    bool IsDuplaSelected => TipoGameplay == TipoGameplay.Dupla;
 
     public string modalDisplay { get; set; }
 
@@ -32,5 +47,8 @@
         modalDisplay = GlobalConstants.NONE;
         CallBack.InvokeAsync(escolha);
     }
-
+    void ChangeTipoGameplaySelect(TipoGameplay tipoGameplay)
+    {
+        TipoGameplay = tipoGameplay;
+    }
 }

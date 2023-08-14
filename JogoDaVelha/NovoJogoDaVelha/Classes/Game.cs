@@ -2,7 +2,7 @@
 {
     public class Game
     {
-        public string[] iconGame = new string[9];
+        public string[] IconGame = new string[9];
         public string ChoiceUser { get; set; } = string.Empty;
         public string DontChoice { get; set; } = string.Empty;
 

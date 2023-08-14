@@ -6,7 +6,7 @@
                 <h5 class="modal-title">@_title</h5>
             </div>
             <div class="modal-body">
-                <h2> @_resultado </h2>
+                <h2> @_ganhadorDoGame </h2>
                 <button class="btn btn-primary" @onclick="@(Close)">Fechar</button>
             </div>
         </div>
@@ -15,10 +15,10 @@
 
 @code {
     [Parameter] public string _modalDisplayWin { get; set; }
-    [Parameter] public string _resultado { get; set; }
+    [Parameter] public string _ganhadorDoGame { get; set; }
     [Parameter] public string _title { get; set; }
 
-    [Parameter] public EventCallback<string> CallbackModalDisplayWin { get; set; }
+    [Parameter] public EventCallback<string> _callbackModalDisplayWin { get; set; }
 
     protected override void OnInitialized()
     {
@@ -28,6 +28,6 @@
     void Close()
     {
         _modalDisplayWin = GlobalConstants.NONE;
-        CallbackModalDisplayWin.InvokeAsync(_modalDisplayWin);
+        _callbackModalDisplayWin.InvokeAsync(_modalDisplayWin);
     }
 }
