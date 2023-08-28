@@ -5,10 +5,10 @@ namespace Test
 {
     public class TestarTodasSituacoesDeVitoriaDoGame
     {
-        Game game { get; set; }
+        private Game Game { get; set; }
         public TestarTodasSituacoesDeVitoriaDoGame()
         {
-            game = new Game();
+            Game = new Game();
         }
 
       
@@ -30,7 +30,7 @@ namespace Test
                 foreach (List<int> dados in dadosHorizontal)
                 {
 
-                    var resultado = horizontal.Verifica(game.PosicoesDeVitorias, dados);
+                    var resultado = horizontal.Verifica(Game.PosicoesDeVitorias, dados);
 
                     Assert.True(resultado);
                 }
@@ -63,7 +63,7 @@ namespace Test
                 foreach (List<int> dados in dadosVertical)
                 {
 
-                    var resultado = vertical.Verifica(game.PosicoesDeVitorias, dados);
+                    var resultado = vertical.Verifica(Game.PosicoesDeVitorias, dados);
 
                     Assert.True(resultado);
                 }
@@ -93,7 +93,7 @@ namespace Test
                 foreach (List<int> dados in dadosDiagonal)
                 {
 
-                    var resultado = vertical.Verifica(game.PosicoesDeVitorias, dados);
+                    var resultado = vertical.Verifica(Game.PosicoesDeVitorias, dados);
 
                     Assert.True(resultado);
                 }
@@ -106,11 +106,6 @@ namespace Test
             }
 
         }
-
-
-
-
-
 
     }
 }

@@ -4,6 +4,8 @@
 @using JogoDaVelha.Dificuldades
 @using JogoDaVelha.Pages.Modals
 
+@inject IJSRuntime JSRuntime
+
 @if (OnInitializedCompleted)
 {
     <h1 id="maintext" style="text-align:center"> tic tac toe</h1>
@@ -50,7 +52,7 @@
 
     <button class="btn btn-success" @onclick="@(() => Reset(8))">Reiniciar</button>
 
-    <select id="selected" onchange="ChangeBackGroundColor()">
+    <select id="selected" @onchange="ChangeBackGroundColor">
         <option value="light">Light </option>
         <option value="dark">Dark</option>
     </select>
@@ -59,7 +61,7 @@
 
 @if (ExibeInit || ExibeInitClickRest)
 {
-    <ModalInitGame CallBack="@((choice) => InitGame(choice))">
+    <ModalInitGame CallBack="@((recursoInitGame) => InitGame(recursoInitGame))">
 
     </ModalInitGame>
 }
@@ -84,14 +86,18 @@
     private bool ExibeInitClickRest { get; set; }
     private bool ExibeInit { get; set; }
 
-    Game game = new Game();
+    public Game game = new Game();
 
     VerificadorDeVitoria verificadorDeVitoria = new();
+
+    IA IA = new();
 
     public string[] ResultGame = new[] { "win", "empate" };
 
     public bool OnInitializedCompleted { get; set; }
-    string choice;
+
+    public TipoGameplay TipoGameplay { get; set; }
+
     #endregion
 
     #region Functions
@@ -101,17 +107,18 @@
         ExibeInit = true;
         OnInitializedCompleted = true;
     }
-
-    public void InitGame(string choice)
+    public async Task ChangeBackGroundColor(ChangeEventArgs e)
     {
-        if (choice == GlobalConstants.X_PNG)
-        {
+        await JSRuntime.InvokeAsync<string>("ChangeBackGroundColor", e.Value);
+    }
+    public void InitGame(RecursosInitGame recursosInitGame)
+    {
+        TipoGameplay = recursosInitGame.TipoGameplay;
+        if (recursosInitGame.EscolhaDoUsuario == GlobalConstants.X_PNG)
             SetarEscolhaDoUsuario(GlobalConstants.CIRCULO_PNG, GlobalConstants.X_PNG);
-        }
         else
-        {
             SetarEscolhaDoUsuario(GlobalConstants.X_PNG, GlobalConstants.CIRCULO_PNG);
-        }
+
         modalDisplay = GlobalConstants.NONE;
 
     }
@@ -147,18 +154,38 @@
 
         bool vezUsuario = Vez_Usuario();
 
-        var DefinirChoiceUser = vezUsuario ? game.ChoiceUser : game.DontChoice;
+        string DefinirChoiceUser = vezUsuario ? game.ChoiceUser : game.DontChoice;
 
         var DefinirPosicoes = vezUsuario ? game.PosicoesEscolhidas : game.PosicoesNaoEscolhidas;
 
         ArmazenarEDefinirPosicoesIcones(game.IconGame, DefinirChoiceUser, indice, DefinirPosicoes);
 
+        DecidirContraQualPlayerVaiJogar(DefinirPosicoes, vezUsuario);
+
         GerarVencedor(DefinirPosicoes);
+
+        if (vezUsuario)
+        {
+            game.DisplayCasa[IA.SelectedNumber] = GlobalConstants.BLOCK;
+            return;
+        }
 
         game.DisplayCasa[indice] = GlobalConstants.BLOCK;
 
     }
 
+    void DecidirContraQualPlayerVaiJogar(List<(int posicoes, string icone)> posicoesDoJogador, bool vezUsuario)
+    {
+        if (TipoGameplay == TipoGameplay.IA && vezUsuario)
+        {
+            var PosicoesDoJogador = posicoesDoJogador.Select(s => s.posicoes).ToList();
+            IA.PlayerIA(game.PosicoesDeVitorias, PosicoesDoJogador);
+        }
+        else
+        {
+
+        }
+    }
     public void GerarVencedor(List<(int, string)> definirPosicoes)
     {
         if (!VerificarSeHouveGanhador(game.PosicoesDeVitorias, definirPosicoes) && ContadorDeMovimentos == 8)

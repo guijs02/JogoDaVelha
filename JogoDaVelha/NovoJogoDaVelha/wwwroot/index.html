@@ -31,15 +31,22 @@
     function ChangeBackGroundColor() {
         var content = document.getElementById('selected')
 
+        const black = "black"
+        const white = "white"
+        var theme = ""
+        
         if (content.value === "dark") {
-            document.body.style.backgroundColor = "#111619"
-            document.getElementById('maintext').style.color = 'white'
+            theme = "#111619"
+            document.body.style.backgroundColor = theme
+            document.getElementById('maintext').style.color = white
 
         } else {
-            document.body.style.backgroundColor = "white"
-            document.getElementById('maintext').style.color = 'black'
+            theme = white
+            document.body.style.backgroundColor = theme
+            document.getElementById('maintext').style.color = black
 
         }
+        return theme
     }
 </script>
 </html>

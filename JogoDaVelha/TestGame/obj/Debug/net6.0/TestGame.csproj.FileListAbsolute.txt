@@ -130,3 +130,14 @@ C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\obj\Debug\net6.0\refint\T
 C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\obj\Debug\net6.0\TestGame.pdb
 C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\obj\Debug\net6.0\TestGame.genruntimeconfig.cache
 C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\obj\Debug\net6.0\ref\TestGame.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\AngleSharp.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\AngleSharp.Css.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\AngleSharp.Diffing.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\Bunit.Core.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\AngleSharpWrappers.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\Bunit.Web.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Authorization.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\user\Desktop\JogoDaVelha\JogoDaVelha\TestGame\bin\Debug\net6.0\Microsoft.Extensions.Localization.Abstractions.dll

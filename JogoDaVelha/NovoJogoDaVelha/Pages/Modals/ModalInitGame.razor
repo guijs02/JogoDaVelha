@@ -1,4 +1,5 @@
-﻿<div class="modal" tabindex="-1" role="dialog" style="display:@modalDisplay; overflow-y: auto;">
+﻿@using JogoDaVelha.Classes;
+<div class="modal" tabindex="-1" role="dialog" style="display:@modalDisplay; overflow-y: auto;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -28,15 +29,15 @@
 </div>
 
 @code {
-    public TipoGameplay TipoGameplay { get; set; } = 0;
+    public RecursosInitGame RecursosInitGame { get; set; } = new();
 
-    bool IsIASelected => TipoGameplay == TipoGameplay.IA;
+    bool IsIASelected => RecursosInitGame.TipoGameplay == TipoGameplay.IA;
 
-    bool IsDuplaSelected => TipoGameplay == TipoGameplay.Dupla;
+    bool IsDuplaSelected => RecursosInitGame.TipoGameplay == TipoGameplay.Dupla;
 
     public string modalDisplay { get; set; }
 
-    [Parameter] public EventCallback<string> CallBack { get; set; }
+    [Parameter] public EventCallback<RecursosInitGame> CallBack { get; set; }
 
     protected override void OnInitialized()
     {
@@ -45,10 +46,11 @@
     public void PassToParent(string escolha)
     {
         modalDisplay = GlobalConstants.NONE;
-        CallBack.InvokeAsync(escolha);
+        RecursosInitGame.EscolhaDoUsuario = escolha;
+        CallBack.InvokeAsync(RecursosInitGame);
     }
     void ChangeTipoGameplaySelect(TipoGameplay tipoGameplay)
     {
-        TipoGameplay = tipoGameplay;
+        RecursosInitGame.TipoGameplay = tipoGameplay;
     }
 }

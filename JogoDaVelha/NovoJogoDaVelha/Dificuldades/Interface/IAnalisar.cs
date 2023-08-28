@@ -2,7 +2,7 @@
 {
     public interface IAnalisar
     {
-        void VerificarDificuldadeDaIA(int[] posicoesVitoria, List<int> PosicoesDoJogo ,string dificuldade);
+        void PlayerIA(int[] posicoesVitoria, List<int> PosicoesDoJogo ,string dificuldade);
         
     }
 }
