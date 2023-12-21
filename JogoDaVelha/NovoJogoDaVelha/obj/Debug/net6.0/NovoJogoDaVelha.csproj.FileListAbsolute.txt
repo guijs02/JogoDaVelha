@@ -1,6 +1,0 @@
-C:\Users\user\Desktop\NovoJogoDaVelha\NovoJogoDaVelha\NovoJogoDaVelha\obj\Debug\net6.0\NovoJogoDaVelha.csproj.AssemblyReference.cache
-C:\Users\user\Desktop\NovoJogoDaVelha\NovoJogoDaVelha\NovoJogoDaVelha\obj\Debug\net6.0\NovoJogoDaVelha.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\user\Desktop\NovoJogoDaVelha\NovoJogoDaVelha\NovoJogoDaVelha\obj\Debug\net6.0\NovoJogoDaVelha.AssemblyInfoInputs.cache
-C:\Users\user\Desktop\NovoJogoDaVelha\NovoJogoDaVelha\NovoJogoDaVelha\obj\Debug\net6.0\NovoJogoDaVelha.AssemblyInfo.cs
-C:\Users\user\Desktop\NovoJogoDaVelha\NovoJogoDaVelha\NovoJogoDaVelha\obj\Debug\net6.0\NovoJogoDaVelha.csproj.CoreCompileInputs.cache
-C:\Users\user\Desktop\NovoJogoDaVelha\NovoJogoDaVelha\NovoJogoDaVelha\obj\Debug\net6.0\NovoJogoDaVelha.MvcApplicationPartsAssemblyInfo.cache
