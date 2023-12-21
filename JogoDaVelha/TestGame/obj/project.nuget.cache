@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0p1NZPBMsU30yFgpPlXiYEeaCJSm7+5gwLLWmxd2f87frIQ0ebcdPISXPmd8PXsNyLFsA+XZMCc4JBzO+uRR6Q==",
+  "dgSpecHash": "ppkMmmkFhjC5W/MgzwrvKGoEpTLUjpwKxt0oH3n7+Ddua0RGHAh41GS1/cEp5PgzWnQJxCsokwRzuSB7Zh2vMA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Desktop\\JogoDaVelha\\JogoDaVelha\\TestGame\\TestGame.csproj",
+  "projectFilePath": "C:\\Users\\user\\source\\repos\\JogoDaVelha\\JogoDaVelha\\TestGame\\TestGame.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\anglesharp\\0.17.1\\anglesharp.0.17.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\anglesharp.css\\0.17.0\\anglesharp.css.0.17.0.nupkg.sha512",

@@ -6,17 +6,6 @@
                 <h5 class="modal-title">Hora de jogar</h5>
             </div>
             <div class="modal-body">
-                <div>
-
-                    <input type="radio" checked="@IsIASelected" value="1" @onchange="@(() => ChangeTipoGameplaySelect(TipoGameplay.IA))" />
-                    <label>Jogar contra IA</label>
-
-                </div>
-                <div>
-
-                    <input type="radio" checked="@IsDuplaSelected" value="2" @onchange="@(() => ChangeTipoGameplaySelect(TipoGameplay.Dupla))" />
-                    <label>Jogar 1x1</label>
-                </div>
                 <br />
                 Escolha o jogador
                 <div>
@@ -30,10 +19,6 @@
 
 @code {
     public RecursosInitGame RecursosInitGame { get; set; } = new();
-
-    bool IsIASelected => RecursosInitGame.TipoGameplay == TipoGameplay.IA;
-
-    bool IsDuplaSelected => RecursosInitGame.TipoGameplay == TipoGameplay.Dupla;
 
     public string modalDisplay { get; set; }
 

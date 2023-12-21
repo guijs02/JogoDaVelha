@@ -30,7 +30,7 @@ namespace TestGame
         {
             var component = testContext.RenderComponent<JogoDaVelha.Pages.Index>();
             
-            //component.Instance.InitGame(component.Instance.);
+            //component.Instance.InitGame(component.Instance);
 
             Assert.Equal(escolhaUsuario, component.Instance.game.ChoiceUser);
             Assert.NotEqual(escolhaUsuario, component.Instance.game.DontChoice);

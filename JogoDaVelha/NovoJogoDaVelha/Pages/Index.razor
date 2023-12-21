@@ -12,41 +12,41 @@
     <div class="container" id="main">
 
         <div class="box" style="border-left: 0; border-top: 0" id="box1" @onclick="@(() => ActionCasas(0))">
-            <img src="@game.IconGame[0]" class="img-x-o" style="display:@game.DisplayCasa[0]" />
+            <img src="@Game.IconGame[0]" class="img-x-o" style="display:@Game.DisplayCasa[0]" />
 
         </div>
         <div class="box" style="border-top: 0" id="box2" @onclick="@(() => ActionCasas(1))">
 
-            <img src="@game.IconGame[1]" class="img-x-o" style="display:@game.DisplayCasa[1]" />
+            <img src="@Game.IconGame[1]" class="img-x-o" style="display:@Game.DisplayCasa[1]" />
         </div>
         <div class="box" style="border-top: 0; border-right: 0" id="box3" @onclick="@(() => ActionCasas(2))">
-            <img src="@game.IconGame[2]" class="img-x-o" style="display:@game.DisplayCasa[2]" />
+            <img src="@Game.IconGame[2]" class="img-x-o" style="display:@Game.DisplayCasa[2]" />
 
         </div>
 
         <div class="box" style="border-left: 0" id="box4" @onclick="@(() => ActionCasas(3))">
-            <img src="@game.IconGame[3]" class="img-x-o" style="display:@game.DisplayCasa[3]" />
+            <img src="@Game.IconGame[3]" class="img-x-o" style="display:@Game.DisplayCasa[3]" />
 
         </div>
 
         <div class="box" id="box5" @onclick="@(() => ActionCasas(4))">
-            <img src="@game.IconGame[4]" class="img-x-o" style="display:@game.DisplayCasa[4]" />
+            <img src="@Game.IconGame[4]" class="img-x-o" style="display:@Game.DisplayCasa[4]" />
 
         </div>
         <div class="box" style="border-right: 0" id="box6" @onclick="@(() => ActionCasas(5))">
-            <img src="@game.IconGame[5]" class="img-x-o" style="display:@game.DisplayCasa[5]" />
+            <img src="@Game.IconGame[5]" class="img-x-o" style="display:@Game.DisplayCasa[5]" />
 
         </div>
 
         <div class="box" style="border-left: 0; border-bottom: 0" id="box7" @onclick="@(() => ActionCasas(6))">
-            <img src="@game.IconGame[6]" class="img-x-o" style="display:@game.DisplayCasa[6]" />
+            <img src="@Game.IconGame[6]" class="img-x-o" style="display:@Game.DisplayCasa[6]" />
 
         </div>
         <div class="box" style="border-bottom: 0" id="box8" @onclick="@(() => ActionCasas(7))">
-            <img src="@game.IconGame[7]" class="img-x-o" style="display:@game.DisplayCasa[7]" />
+            <img src="@Game.IconGame[7]" class="img-x-o" style="display:@Game.DisplayCasa[7]" />
         </div>
         <div class="box" style="border-right: 0; border-bottom: 0" id="box9" @onclick="@(() => ActionCasas(8))">
-            <img src="@game.IconGame[8]" class="img-x-o" style="display:@game.DisplayCasa[8]" />
+            <img src="@Game.IconGame[8]" class="img-x-o" style="display:@Game.DisplayCasa[8]" />
         </div>
     </div>
 
@@ -66,10 +66,10 @@
     </ModalInitGame>
 }
 
-<ModalOverGame _modalDisplayWin="@modalDisplayWin"
+<ModalOverGame _modalDisplayWin="@ModalDisplayWin"
                _ganhadorDoGame="@GanhadorDoGame"
                _title="@TitleModal"
-               _callbackModalDisplayWin="@((display) => modalDisplayWin = display)">
+               _callbackModalDisplayWin="@((display) => ModalDisplayWin = display)">
 </ModalOverGame>
 
 @code {
@@ -77,8 +77,8 @@
 
     private string TitleModal;
 
-    public string modalDisplay { get; set; }
-    public string modalDisplayWin = string.Empty;
+    public string ModalDisplay { get; set; }
+    public string ModalDisplayWin = string.Empty;
     public string GanhadorDoGame { get; set; } = string.Empty;
 
     int ContadorDeMovimentos = -1;
@@ -86,17 +86,14 @@
     private bool ExibeInitClickRest { get; set; }
     private bool ExibeInit { get; set; }
 
-    public Game game = new Game();
+    public Game Game = new Game();
 
     VerificadorDeVitoria verificadorDeVitoria = new();
-
-    IA IA = new();
 
     public string[] ResultGame = new[] { "win", "empate" };
 
     public bool OnInitializedCompleted { get; set; }
 
-    public TipoGameplay TipoGameplay { get; set; }
 
     #endregion
 
@@ -113,24 +110,26 @@
     }
     public void InitGame(RecursosInitGame recursosInitGame)
     {
-        TipoGameplay = recursosInitGame.TipoGameplay;
         if (recursosInitGame.EscolhaDoUsuario == GlobalConstants.X_PNG)
             SetarEscolhaDoUsuario(GlobalConstants.CIRCULO_PNG, GlobalConstants.X_PNG);
         else
             SetarEscolhaDoUsuario(GlobalConstants.X_PNG, GlobalConstants.CIRCULO_PNG);
 
-        modalDisplay = GlobalConstants.NONE;
+        ModalDisplay = GlobalConstants.NONE;
 
     }
     void SetarEscolhaDoUsuario(string dontChoice, string choice)
     {
-        game.DontChoice = dontChoice;
-        game.ChoiceUser = choice;
+        Game.DontChoice = dontChoice;
+        Game.ChoiceUser = choice;
     }
     private void Reset(int indice)
     {
+        if (!Game.DisplayCasa.Any(c => c == GlobalConstants.BLOCK))
+            return;
+
         for (int i = 0; i <= indice; i++)
-            game.DisplayCasa[i] = GlobalConstants.NONE;
+            Game.DisplayCasa[i] = GlobalConstants.NONE;
 
         LimparDados();
 
@@ -144,9 +143,9 @@
         ExibeInitClickRest = false;
         ExibeInit = false;
 
-        if (game.DisplayCasa[indice] == GlobalConstants.BLOCK)
+        if (Game.DisplayCasa[indice] == GlobalConstants.BLOCK)
         {
-            game.DisplayCasa[indice] = GlobalConstants.BLOCK;
+            Game.DisplayCasa[indice] = GlobalConstants.BLOCK;
             return;
         }
 
@@ -154,41 +153,21 @@
 
         bool vezUsuario = Vez_Usuario();
 
-        string DefinirChoiceUser = vezUsuario ? game.ChoiceUser : game.DontChoice;
+        string DefinirChoiceUser = vezUsuario ? Game.ChoiceUser : Game.DontChoice;
 
-        var DefinirPosicoes = vezUsuario ? game.PosicoesEscolhidas : game.PosicoesNaoEscolhidas;
+        var DefinirPosicoes = vezUsuario ? Game.PosicoesEscolhidas : Game.PosicoesNaoEscolhidas;
 
-        ArmazenarEDefinirPosicoesIcones(game.IconGame, DefinirChoiceUser, indice, DefinirPosicoes);
-
-        DecidirContraQualPlayerVaiJogar(DefinirPosicoes, vezUsuario);
+        ArmazenarEDefinirPosicoesIcones(Game.IconGame, DefinirChoiceUser, indice, DefinirPosicoes);
 
         GerarVencedor(DefinirPosicoes);
 
-        if (vezUsuario)
-        {
-            game.DisplayCasa[IA.SelectedNumber] = GlobalConstants.BLOCK;
-            return;
-        }
-
-        game.DisplayCasa[indice] = GlobalConstants.BLOCK;
+        Game.DisplayCasa[indice] = GlobalConstants.BLOCK;
 
     }
 
-    void DecidirContraQualPlayerVaiJogar(List<(int posicoes, string icone)> posicoesDoJogador, bool vezUsuario)
-    {
-        if (TipoGameplay == TipoGameplay.IA && vezUsuario)
-        {
-            var PosicoesDoJogador = posicoesDoJogador.Select(s => s.posicoes).ToList();
-            IA.PlayerIA(game.PosicoesDeVitorias, PosicoesDoJogador);
-        }
-        else
-        {
-
-        }
-    }
     public void GerarVencedor(List<(int, string)> definirPosicoes)
     {
-        if (!VerificarSeHouveGanhador(game.PosicoesDeVitorias, definirPosicoes) && ContadorDeMovimentos == 8)
+        if (!VerificarSeHouveGanhador(Game.PosicoesDeVitorias, definirPosicoes) && ContadorDeMovimentos == 8)
         {
             GanhadorDoGame = GlobalConstants.EMPATE;
             SetTitleModalOverGame(1);
@@ -202,7 +181,6 @@
         if (houveGanhador)
             FinalizarGame(posicoes);
 
-
         return houveGanhador;
     }
 
@@ -213,7 +191,7 @@
 
     public void ExibirGanhadorModal()
     {
-        modalDisplayWin = GlobalConstants.BLOCK;
+        ModalDisplayWin = GlobalConstants.BLOCK;
     }
 
     void FinalizarGame(List<(int, string)> posicoes)
@@ -227,11 +205,11 @@
     }
     private void LimparDados()
     {
-        game.PosicoesNaoEscolhidas.Clear();
-        game.PosicoesEscolhidas.Clear();
+        Game.PosicoesNaoEscolhidas.Clear();
+        Game.PosicoesEscolhidas.Clear();
         ContadorDeMovimentos = -1;
-        game.DontChoice = string.Empty;
-        game.ChoiceUser = string.Empty;
+        Game.DontChoice = string.Empty;
+        Game.ChoiceUser = string.Empty;
     }
     void ArmazenarEDefinirPosicoesIcones(string[] iconGame, string choice, int indice, List<(int, string)> posicoes)
     {
