@@ -1,7 +1,7 @@
 {
   "entryAssembly": "JogoDaVelha",
   "resources": {
-    "hash": "sha256-c9kJBgaeyVQbuvIFoL3KRl8kT0MYiN7E/gyEV3L9HaE=",
+    "hash": "sha256-ZW1oaGn938TyaD47B5KXWhsht99jBqGdlLK0UqMLLSQ=",
     "runtime": {
       "dotnet.6.0.25.kzw47yg5rc.js": "sha256-1jUGCCSGH9JWhkqbHdQk8JBjBI8K/VC63En5zlypVps=",
       "dotnet.timezones.blat": "sha256-KsGUR9nqtXb3Hy6IrNlnc1HoSS+AFlsXTX9rq4oChtA=",
@@ -200,10 +200,10 @@
       "mscorlib.dll": "sha256-veli+XvWHzkA3s4t4DKI+XiyNMpfHQjiO002+ExANkU=",
       "netstandard.dll": "sha256-O9JhHo5KqxkmwmapuxuhG/iMRV7RHcrCDO9z+yv+8yI=",
       "System.Private.CoreLib.dll": "sha256-6rKu8tPdUGsvbSpesoNMVzbx7bNqPRMPV34eI7vSYaQ=",
-      "JogoDaVelha.dll": "sha256-FuO/OWwM7JkZDXnVp96+Gw9bSBsYVBnlFc+O/i7B9lI="
+      "JogoDaVelha.dll": "sha256-aCgLIe1tZx3u8CuurGmjhzCx+FBDp01UIJFSGGf2ABQ="
     },
     "pdb": {
-      "JogoDaVelha.pdb": "sha256-JfK3yiGsuoZU3228UqdMWJwHdlFmAlBugy4+W0DPO5Y="
+      "JogoDaVelha.pdb": "sha256-bgtyNxJmDp1hptEyghsewaEuJmLwBwivnMJ44ZnXB/A="
     },
     "runtimeAssets": {
       "dotnet.wasm": {
