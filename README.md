@@ -1,5 +1,12 @@
-<h1>Este projeto é um jogo da velha construído com C# e Blazor.</h1>
+<h1>Tic Tac Toe 🕹</h1>
 
-O projeto foi construido a fim de aplicar conceitos como Orientação a Objetos, Design Pattern, SOLID, e testes automatizados.
+O projeto foi construido em a fim de aplicar conceitos como Orientação a Objetos, Design Pattern, e testes automatizados.
 
-O jogo funcionalidades com reiniciar o game e selecionar qual icone deseja jogar.
+## ⛏Tecnologias
+- Blazor
+- C#
+- Xunit
+
+## 🛠Funcionalidades
+- Reiniciar o game 
+- Selecionar qual jogador o usuário deseja jogar
